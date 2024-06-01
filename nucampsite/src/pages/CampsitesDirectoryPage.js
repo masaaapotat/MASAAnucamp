@@ -1,27 +1,29 @@
 import { useState } from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import CampsiteDetail from '../features/campsites/CampsiteDetail';
 import CampsitesList from '../features/campsites/CampsitesList';
-import { selectRandomCampsite } from '../features/campsites/CampsitesSlice';
+import { selectCampsiteById } from '../features/campsites/CampsitesSlice';
 
 const CampsitesDirectoryPage = () => {
-    const [selectedCampsite, toggleCampsite ] = useState(selectRandomCampsite())
+  // State to store the ID of the selected campsite
+  const [campsiteId, setCampsiteId] = useState(0);
 
-    return (
-        <Container>
-            <Button onClick={() => toggleCampsite(selectRandomCampsite())}>
-                Select Random Campsite
-            </Button>
-            <Row>
-                <Col sm='5' md='7'>
-                    <CampsitesList />
-                </Col>
-                <Col sm='7' md='5'>
-                    <CampsiteDetail campsite={selectedCampsite} />
-                </Col>
-            </Row>
-        </Container>
-    );
-}; 
+  // Get the actual campsite object based on the ID
+  const selectedCampsite = selectCampsiteById(campsiteId);
+ 
+  return (
+    <Container>
+      {/* Removed the commented-out button section */}
+      <Row>
+        <Col sm='5' md='7'>
+          <CampsitesList setCampsiteId={setCampsiteId} /> {/* Pass setCampsiteId prop */}
+        </Col>
+        <Col sm='7' md='5'>
+          <CampsiteDetail campsite={selectedCampsite} />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default CampsitesDirectoryPage;
