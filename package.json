@@ -4,6 +4,7 @@
     "bootstrap-social": "^5.1.1",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-router-dom": "^6.2.1",
     "react-spring": "^9.4.5-beta.1",
     "reactstrap": "^9.0.1",
